@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="orange_button">#FFFF931E</color>
+    <color name="green_button">#FF8CC63F</color>
+    <color name="pink_button">#FFFF6D69</color>
+    <color name="cyan_button">#FF00A99D</color>
+    <color name="yellow_button">#FFFFC35B</color>
+    <color name="violet_button">#FFAF79DB</color>
+    <color name="gray_dark">#FF333333</color>
+    <color name="gray_middle">#FF4D4D4D</color>
+    <color name="gray_light">#FF808080</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

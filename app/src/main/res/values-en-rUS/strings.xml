@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cook helper</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Settings</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="text_no_home_fragment">This is not the main page</string>
+    <string name="text_field_input">Time to cook!</string>
+    <string name="text_add_ingridients">Add the ingredients</string>
+</resources>

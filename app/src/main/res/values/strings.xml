@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Cook helper</string>
+    <string name="title_home">Дом</string>
+    <string name="title_dashboard">Настройки</string>
+    <string name="title_notifications">Уведомления</string>
+    <string name="text_no_home_fragment">Это не главная страница</string>
+    <string name="text_field_input">Время готовить!</string>
+    <string name="text_add_ingridients">Добавьте ингридиенты</string>
+</resources>
