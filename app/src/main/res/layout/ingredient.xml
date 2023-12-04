@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ingredientLayout">
+
+    <ImageView
+        android:id="@+id/ingredientBack"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/field_back" />
+
+    <TextView
+        android:id="@+id/ingredientName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ingredientBack"
+        android:layout_alignTop="@+id/ingredientBack"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="-5dp"
+        android:text="Text"
+        android:textSize="50dp" />
+
+    <ImageButton
+        android:id="@+id/buttonIngredientRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ingredientBack"
+        android:layout_alignEnd="@+id/ingredientBack"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="5dp"
+
+        android:contentDescription="@string/app_name"
+        android:onClick="onClickButtonRemoveIngredient"
+        app:srcCompat="@android:drawable/ic_delete" />
+
+
+</RelativeLayout>
