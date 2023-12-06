@@ -6,4 +6,6 @@
     <string name="text_no_home_fragment">Это не главная страница</string>
     <string name="text_field_input">Время готовить!</string>
     <string name="text_add_ingridients">Добавьте ингридиенты</string>
+    <string name="recipe_button">Подобрать рецепт</string>
+    <string name="void_input">Вы ничего не ввели!</string>
 </resources>

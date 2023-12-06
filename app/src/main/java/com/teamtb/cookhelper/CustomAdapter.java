@@ -32,12 +32,21 @@ import java.util.Random;
 
 public class CustomAdapter extends ArrayAdapter<String> {
     private final ArrayList<Map.Entry<String, Integer>> list = new ArrayList<>();
+    private ImageButton recipeButton = null;
+    private TextView recipeText = null;
+
+    // это некрасивое решение, зато простое
+    public CustomAdapter(@NonNull Context context, ImageButton recipeButton, TextView recipeText) {
+        this(context, new ArrayList<>());
+        this.recipeButton = recipeButton;
+        this.recipeText = recipeText;
+    }
 
     public CustomAdapter(@NonNull Context context) {
         this(context, new ArrayList<>());
     }
 
-    public CustomAdapter(@NonNull Context context, List<String> objects) {
+    public CustomAdapter(@NonNull Context context, List<String> objects) { // TODO: мне кажется, если objects не будет пустым, это вызовет ошибку
         super(context, R.layout.ingredient, R.id.ingredientName, objects);
 
         for (String str : objects) {
@@ -63,8 +72,13 @@ public class CustomAdapter extends ArrayAdapter<String> {
     public void removeElement(int position, String key) {
         if (list.size() <= position) return;
         list.remove(position);
-        CustomAdapter.this.remove(key);
-        CustomAdapter.this.notifyDataSetChanged();
+        this.remove(key);
+        this.notifyDataSetChanged();
+
+        if (list.size() == 0 && recipeText != null && recipeButton != null) {
+            recipeButton.setVisibility(View.INVISIBLE);
+            recipeText.setVisibility(View.INVISIBLE);
+        }
 
         serializeData();
     }
@@ -89,7 +103,7 @@ public class CustomAdapter extends ArrayAdapter<String> {
         if (entry == null) return view;
 
         String text = entry.getKey();
-        text = text.substring(0, 1).toUpperCase() + text.substring(1); // делаем первую букву заглавной
+        text = text.substring(0, 1).toUpperCase() + ((text.length() > 1) ? text.substring(1) : ""); // делаем первую букву заглавной
 
         // если весь текст не помещается в поле, то обрезаем его
         if (text.length() > 9) {
@@ -113,12 +127,16 @@ public class CustomAdapter extends ArrayAdapter<String> {
         return view;
     }
 
-    public void serializeData() {
+    public ArrayList<String> getListIngredients() {
         ArrayList<String> list_ingredients = new ArrayList<>();
         for (Map.Entry<String, Integer> element : list) {
             list_ingredients.add(element.getKey());
         }
-        String data = new Gson().toJson(list_ingredients);
+        return list_ingredients;
+    }
+
+    public void serializeData() {
+        String data = new Gson().toJson(getListIngredients());
 
         try {
             FileOutputStream file = this.getContext().openFileOutput("ingredient_data.json", Context.MODE_PRIVATE);

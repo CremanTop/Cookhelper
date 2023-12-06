@@ -5,7 +5,9 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,11 +17,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.teamtb.cookhelper.CustomAdapter;
+import com.teamtb.cookhelper.R;
 import com.teamtb.cookhelper.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private ImageButton recipeButton;
+    private TextView recipeText;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,21 +39,41 @@ public class HomeFragment extends Fragment {
 
         final EditText inputField = binding.inputField; // поле для ввода текста пользователем
         final ListView listView = binding.listView;// список ингридиентов
+        recipeButton = binding.buttonRecipe;
+        recipeText = binding.textRecipe;
 
-        CustomAdapter adapter = new CustomAdapter(this.requireContext());
+        CustomAdapter adapter = new CustomAdapter(this.requireContext(), recipeButton, recipeText);
         listView.setAdapter(adapter); // устанавливаем свой адаптер для отображения и логики элементов в списке
+
+        if (adapter.getListIngredients().size() == 0) {
+            recipeButton.setVisibility(View.INVISIBLE);
+            recipeText.setVisibility(View.INVISIBLE);
+        }
 
         // обработчик ввода текста
         inputField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 String text = v.getText().toString();
+                if (text.length() == 0) {
+                    Toast.makeText(v.getContext(), getString(R.string.void_input), Toast.LENGTH_SHORT).show();
+                    return false;
+                }
                 System.out.println("Введено: " + text);
                 adapter.addElement(text); // добавляем ингридиент
 
                 v.setText(""); // очищаем поле ввода
 
+                recipeButton.setVisibility(View.VISIBLE);
+                recipeText.setVisibility(View.VISIBLE);
+
                 return true;
+            }
+        });
+
+        recipeButton.setOnClickListener(new View.OnClickListener()   {
+            public void onClick(View v)  {
+                Toast.makeText(v.getContext(), "click", Toast.LENGTH_SHORT).show();
             }
         });
 

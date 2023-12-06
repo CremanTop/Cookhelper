@@ -67,7 +67,72 @@
             android:layout_marginTop="5dp"
             android:divider="@color/cardview_shadow_end_color" />
 
-<!--        <LinearLayout-->
+        <ImageButton
+            android:id="@+id/button_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="20dp"
+
+            android:scaleType="fitXY"
+            android:maxHeight="500dp"
+            android:maxWidth="500dp"
+            android:adjustViewBounds="true"
+
+            android:backgroundTint="#00FFFFFF"
+
+            android:contentDescription="@string/app_name"
+            android:visibility="visible"
+            app:srcCompat="@drawable/button_find" />
+
+        <TextView
+            android:id="@+id/text_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/button_recipe"
+            android:layout_alignTop="@+id/button_recipe"
+            android:layout_alignEnd="@+id/button_recipe"
+            android:layout_alignBottom="@id/button_recipe"
+            android:layout_marginTop="70sp"
+            android:text="@string/recipe_button"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:clickable="false"/>
+
+<!--        <Button-->
+<!--            android:id="@+id/button2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Button"-->
+<!--            android:background="@drawable/button_find"/>-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/my_button"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="My Button"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/my_textview"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="My Text"-->
+<!--                app:layout_constraintStart_toStartOf="@id/my_button"-->
+<!--                app:layout_constraintTop_toTopOf="@id/my_button"/>-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <!--        <LinearLayout-->
 <!--            android:id="@+id/linear"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent"-->
@@ -75,7 +140,6 @@
 <!--            android:orientation="vertical" />-->
 
     </RelativeLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
