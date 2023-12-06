@@ -39,9 +39,10 @@ public class CustomAdapter extends ArrayAdapter<String> {
     public void addElement(String key) {
         int[] colors = new int[] {R.color.orange_button, R.color.green_button, R.color.cyan_button, R.color.pink_button, R.color.yellow_button, R.color.violet_button};
         int color = colors[new Random().nextInt(colors.length)];
-        AbstractMap.SimpleEntry<String, Integer> entry = new AbstractMap.SimpleEntry<>(key, color);
+        String text = key.toLowerCase();
+        AbstractMap.SimpleEntry<String, Integer> entry = new AbstractMap.SimpleEntry<>(text, color);
         list.add(entry);
-        this.add(key);
+        this.add(text);
         this.notifyDataSetChanged();
     }
 
@@ -54,7 +55,7 @@ public class CustomAdapter extends ArrayAdapter<String> {
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         View view = convertView;
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -70,7 +71,15 @@ public class CustomAdapter extends ArrayAdapter<String> {
         Map.Entry<String, Integer> entry = list.get(position);
 
         if (entry == null) return view;
-        textView.setText(entry.getKey());
+
+        String text = entry.getKey();
+        text = text.substring(0, 1).toUpperCase() + text.substring(1);
+
+        if (text.length() > 9) {
+            text = text.substring(0, 9) + "...";
+        }
+
+        textView.setText(text);
 
         Drawable drawable = ContextCompat.getDrawable(this.getContext(), R.drawable.field_back);
         drawable.setColorFilter(ContextCompat.getColor(this.getContext(), entry.getValue()), PorterDuff.Mode.SRC_ATOP);

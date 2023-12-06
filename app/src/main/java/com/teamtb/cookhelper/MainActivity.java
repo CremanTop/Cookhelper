@@ -60,9 +60,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 String text = v.getText().toString();
-                if (text.length() > 7) {
-                    text = text.substring(0, 7) + "...";
-                }
                 System.out.println("Введено всякое " + text);
                 adapter.addElement(text);
 
