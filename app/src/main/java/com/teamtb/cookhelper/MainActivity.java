@@ -26,10 +26,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private EditText inputField;
     private LinearLayout layout;
-    private ImageView imageView;
-    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,28 +43,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-
-        inputField = findViewById(R.id.editTextText);
-//        layout = findViewById(R.id.linear);
-        imageView = findViewById(R.id.imageView3);
-        listView = findViewById(R.id.listView);
-
-        CustomAdapter adapter = new CustomAdapter(this);
-        listView.setAdapter(adapter);
-
-
-        inputField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                String text = v.getText().toString();
-                System.out.println("Введено всякое " + text);
-                adapter.addElement(text);
-
-                v.setText("");
-
-                return false;
-            }
-        });
     }
 
     @Override
