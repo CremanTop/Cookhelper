@@ -30,23 +30,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class CustomAdapter extends ArrayAdapter<String> {
+public class IngredientsAdapter extends ArrayAdapter<String> {
     private final ArrayList<Map.Entry<String, Integer>> list = new ArrayList<>();
     private ImageButton recipeButton = null;
     private TextView recipeText = null;
 
     // это некрасивое решение, зато простое
-    public CustomAdapter(@NonNull Context context, ImageButton recipeButton, TextView recipeText) {
+    public IngredientsAdapter(@NonNull Context context, ImageButton recipeButton, TextView recipeText) {
         this(context, new ArrayList<>());
         this.recipeButton = recipeButton;
         this.recipeText = recipeText;
     }
 
-    public CustomAdapter(@NonNull Context context) {
+    public IngredientsAdapter(@NonNull Context context) {
         this(context, new ArrayList<>());
     }
 
-    public CustomAdapter(@NonNull Context context, List<String> objects) { // TODO: мне кажется, если objects не будет пустым, это вызовет ошибку
+    public IngredientsAdapter(@NonNull Context context, List<String> objects) { // TODO: мне кажется, если objects не будет пустым, это вызовет ошибку
         super(context, R.layout.ingredient, R.id.ingredientName, objects);
 
         for (String str : objects) {
@@ -106,8 +106,8 @@ public class CustomAdapter extends ArrayAdapter<String> {
         text = text.substring(0, 1).toUpperCase() + ((text.length() > 1) ? text.substring(1) : ""); // делаем первую букву заглавной
 
         // если весь текст не помещается в поле, то обрезаем его
-        if (text.length() > 9) {
-            text = text.substring(0, 9) + "...";
+        if (text.length() > 13) {
+            text = text.substring(0, 13) + "...";
         }
 
         textView.setText(text);

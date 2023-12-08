@@ -1,11 +1,11 @@
 package com.teamtb.cookhelper.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -16,8 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.teamtb.cookhelper.CustomAdapter;
+import com.teamtb.cookhelper.IngredientsAdapter;
 import com.teamtb.cookhelper.R;
+import com.teamtb.cookhelper.RecipeActivity;
 import com.teamtb.cookhelper.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -25,6 +26,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private ImageButton recipeButton;
     private TextView recipeText;
+    private IngredientsAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class HomeFragment extends Fragment {
         recipeButton = binding.buttonRecipe;
         recipeText = binding.textRecipe;
 
-        CustomAdapter adapter = new CustomAdapter(this.requireContext(), recipeButton, recipeText);
+        adapter = new IngredientsAdapter(this.requireContext(), recipeButton, recipeText);
         listView.setAdapter(adapter); // устанавливаем свой адаптер для отображения и логики элементов в списке
 
         if (adapter.getListIngredients().size() == 0) {
@@ -73,20 +75,22 @@ public class HomeFragment extends Fragment {
 
         recipeButton.setOnClickListener(new View.OnClickListener()   {
             public void onClick(View v)  {
-                Toast.makeText(v.getContext(), "click", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(v.getContext(), adapter.getListIngredients().toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(), RecipeActivity.class);
+                startActivity(intent);
             }
         });
 
 
 
-        Toast.makeText(this.getContext(), "onCreateView", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this.getContext(), "onCreateView", Toast.LENGTH_SHORT).show();
         return root;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Toast.makeText(this.getContext(), "onDestroyView", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this.getContext(), "onDestroyView", Toast.LENGTH_SHORT).show();
         binding = null;
     }
 
