@@ -10,11 +10,9 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.teamtb.cookhelper.databinding.ActivityRecipeBinding;
-import com.teamtb.cookhelper.ui.recipe.Recipe;
-import com.teamtb.cookhelper.ui.recipe.RecipeHandler;
-import com.teamtb.cookhelper.ui.recipe.RecipesBook;
-
-import java.util.ArrayList;
+import com.teamtb.cookhelper.back.recipe.Recipe;
+import com.teamtb.cookhelper.back.recipe.RecipeHandler;
+import com.teamtb.cookhelper.back.recipe.RecipesBook;
 
 public class RecipeActivity extends AppCompatActivity {
 
@@ -40,20 +38,15 @@ public class RecipeActivity extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
 
-        ArrayList<String> yyy = null;
+        int recipe_id = 0;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            yyy = extras.getStringArrayList("list_ingredients");
+            recipe_id = extras.getInt("recipe_id");
         }
 
-        Recipe recipe = RecipesBook.parseRecipe(RecipesBook.RECIPE_1);
+        Recipe recipe = RecipesBook.getRecipeFromId(recipe_id);
+
         StringBuilder str_recipe = new StringBuilder(RecipeHandler.getStringAnnounce(recipe) + RecipeHandler.getStringDescription(recipe) + RecipeHandler.getStringIngredients(recipe) + RecipeHandler.getStringSteps(recipe));
-
-        if (yyy != null) {
-            for (String s : yyy) {
-                str_recipe.append(s).append(" ");
-            }
-        }
 
 
         Toolbar toolbar = binding.toolbar;

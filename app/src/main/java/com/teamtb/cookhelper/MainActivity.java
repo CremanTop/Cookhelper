@@ -16,7 +16,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.teamtb.cookhelper.databinding.ActivityMainBinding;
-import com.teamtb.cookhelper.ui.recipe.RecipeFragment;
 
 import java.util.Random;
 
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         fragment = findViewById(R.id.frame_for_fragments);
 
-        RecipeFragment recipe = new RecipeFragment();
         @SuppressLint("CommitTransaction") FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         //ft.replace(R.id.frame_for_fragments, recipe);
         //ft.add(R.id.frame_for_fragments, recipe);

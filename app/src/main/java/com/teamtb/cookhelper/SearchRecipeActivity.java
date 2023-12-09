@@ -11,10 +11,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.teamtb.cookhelper.databinding.ActivitySearchRecipeBinding;
+import com.teamtb.cookhelper.back.recipe.Recipe;
+import com.teamtb.cookhelper.back.recipe.RecipeSearcher;
 import com.teamtb.cookhelper.ui.recipe_list.SearchRecipeAdapter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SearchRecipeActivity extends AppCompatActivity {
 
@@ -32,16 +33,24 @@ public class SearchRecipeActivity extends AppCompatActivity {
         }
 
         final ListView listView = binding.listRecipe;// список рецептов
-        SearchRecipeAdapter adapter = new SearchRecipeAdapter(this, Arrays.asList("f", "a", "b"), ingredients);
+
+        ArrayList<Recipe> recipes = RecipeSearcher.getRelevantRecipes(ingredients);
+        ArrayList<Integer> ids = new ArrayList<>();
+
+        for (Recipe res : recipes) {
+            ids.add(res.getId());
+        }
+
+        SearchRecipeAdapter adapter = new SearchRecipeAdapter(this, ids, recipes);
         listView.setAdapter(adapter); // устанавливаем свой адаптер для отображения и логики элементов в списке
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(SearchRecipeActivity.this, RecipeActivity.class);
-                //intent.putStringArrayListExtra("list_ingredients", adapter.getListIngredients());
+                intent.putExtra("recipe_id", (Integer) parent.getItemAtPosition(position));
                 startActivity(intent);
-                Toast.makeText((Context) SearchRecipeActivity.this, (String) parent.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText((Context) SearchRecipeActivity.this, String.valueOf(parent.getItemAtPosition(position)), Toast.LENGTH_SHORT).show();
             }
         });
     }

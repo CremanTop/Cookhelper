@@ -106,11 +106,6 @@ public class IngredientsAdapter extends ArrayAdapter<String> {
         String text = entry.getKey();
         text = text.substring(0, 1).toUpperCase() + ((text.length() > 1) ? text.substring(1) : ""); // делаем первую букву заглавной
 
-        // если весь текст не помещается в поле, то обрезаем его
-        if (text.length() > 13) {
-            text = text.substring(0, 13) + "...";
-        }
-
         textView.setText(text);
 
         // устанавливаем цвет фону

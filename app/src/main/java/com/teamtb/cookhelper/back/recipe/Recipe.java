@@ -1,4 +1,4 @@
-package com.teamtb.cookhelper.ui.recipe;
+package com.teamtb.cookhelper.back.recipe;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,6 +52,14 @@ public class Recipe
     public ArrayList<String> getSteps()
     {
         return steps;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

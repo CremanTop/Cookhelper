@@ -1,4 +1,4 @@
-package com.teamtb.cookhelper.ui.recipe;
+package com.teamtb.cookhelper.back.recipe;
 
 import java.util.ArrayList;
 
