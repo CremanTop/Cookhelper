@@ -9,4 +9,5 @@
     <string name="text_add_ingridients">Add the ingredients</string>
     <string name="recipe_button">Choose a recipe</string>
     <string name="void_input">You haven\'t entered anything!</string>
+    <string name="recipe_search">Suitable recipes</string>
 </resources>

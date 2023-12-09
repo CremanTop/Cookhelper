@@ -16,9 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.teamtb.cookhelper.IngredientsAdapter;
 import com.teamtb.cookhelper.R;
 import com.teamtb.cookhelper.RecipeActivity;
+import com.teamtb.cookhelper.SearchRecipeActivity;
 import com.teamtb.cookhelper.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -76,7 +76,8 @@ public class HomeFragment extends Fragment {
         recipeButton.setOnClickListener(new View.OnClickListener()   {
             public void onClick(View v)  {
                 //Toast.makeText(v.getContext(), adapter.getListIngredients().toString(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(v.getContext(), RecipeActivity.class);
+                Intent intent = new Intent(v.getContext(), SearchRecipeActivity.class);
+                intent.putStringArrayListExtra("list_ingredients", adapter.getListIngredients());
                 startActivity(intent);
             }
         });

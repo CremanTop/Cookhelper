@@ -1,4 +1,4 @@
-package com.teamtb.cookhelper;
+package com.teamtb.cookhelper.ui.home;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.google.gson.Gson;
+import com.teamtb.cookhelper.R;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

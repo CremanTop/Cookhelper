@@ -6,6 +6,7 @@
     <color name="cyan_button">#FF00A99D</color>
     <color name="yellow_button">#FFFFC35B</color>
     <color name="violet_button">#FFAF79DB</color>
+    <color name="recipe">#B16615</color>
     <color name="gray_dark">#FF333333</color>
     <color name="gray_middle">#FF4D4D4D</color>
     <color name="gray_light">#FF808080</color>
