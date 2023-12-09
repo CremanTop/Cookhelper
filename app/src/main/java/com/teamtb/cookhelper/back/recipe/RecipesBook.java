@@ -40,11 +40,4 @@ public abstract class RecipesBook {
         }
         return parseRecipe(RECIPE_0);
     }
-
-//    static class NotFoundRecipeException extends Exception {
-//        @SuppressLint("DefaultLocale")
-//        public NotFoundRecipeException(int id) {
-//            super(String.format("Recipe %d not found", id));
-//        }
-//    }
 }

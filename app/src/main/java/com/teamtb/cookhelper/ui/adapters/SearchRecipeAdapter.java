@@ -1,5 +1,6 @@
-package com.teamtb.cookhelper.ui.recipe_list;
+package com.teamtb.cookhelper.ui.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchRecipeAdapter extends ArrayAdapter<Integer> {
-    private ArrayList<Recipe> recipes;
+    private final ArrayList<Recipe> recipes;
     public SearchRecipeAdapter(Context context) {
         this(context, new ArrayList<>(), new ArrayList<>());
     }
@@ -31,6 +32,7 @@ public class SearchRecipeAdapter extends ArrayAdapter<Integer> {
         this.recipes = (ArrayList<Recipe>) recipes;
     }
 
+    @SuppressLint("InflateParams")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

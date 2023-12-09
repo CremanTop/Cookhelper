@@ -1,5 +1,6 @@
-package com.teamtb.cookhelper.ui.home;
+package com.teamtb.cookhelper.ui.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -9,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,6 +84,7 @@ public class IngredientsAdapter extends ArrayAdapter<String> {
         serializeData();
     }
 
+    @SuppressLint("InflateParams")
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
@@ -93,7 +94,6 @@ public class IngredientsAdapter extends ArrayAdapter<String> {
             view = inflater.inflate(R.layout.ingredient, null);
         }
 
-        final RelativeLayout relativeLayout = view.findViewById(R.id.ingredientLayout);
         final ImageView back = view.findViewById(R.id.ingredientBack);
         final TextView textView = view.findViewById(R.id.ingredientName);
         final ImageButton buttonRemove = view.findViewById(R.id.buttonIngredientRemove);
@@ -153,7 +153,7 @@ public class IngredientsAdapter extends ArrayAdapter<String> {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInput));
 
             StringBuilder stringBuilder = new StringBuilder();
-            String lines = "";
+            String lines;
             while ((lines = bufferedReader.readLine()) != null) {
                 stringBuilder.append(lines).append("\n");
             }

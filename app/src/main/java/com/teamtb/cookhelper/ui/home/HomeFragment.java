@@ -14,33 +14,25 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.teamtb.cookhelper.R;
-import com.teamtb.cookhelper.RecipeActivity;
 import com.teamtb.cookhelper.SearchRecipeActivity;
 import com.teamtb.cookhelper.databinding.FragmentHomeBinding;
+import com.teamtb.cookhelper.ui.adapters.IngredientsAdapter;
 
 public class HomeFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
     private ImageButton recipeButton;
     private TextView recipeText;
     private IngredientsAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-
-
         final EditText inputField = binding.inputField; // поле для ввода текста пользователем
-        final ListView listView = binding.listView;// список ингридиентов
+        final ListView listView = binding.listView;// список ингредиентов
         recipeButton = binding.buttonRecipe;
         recipeText = binding.textRecipe;
 
@@ -82,22 +74,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-
         //Toast.makeText(this.getContext(), "onCreateView", Toast.LENGTH_SHORT).show();
         return root;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        //Toast.makeText(this.getContext(), "onDestroyView", Toast.LENGTH_SHORT).show();
-        binding = null;
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        //outState.put
     }
 }
