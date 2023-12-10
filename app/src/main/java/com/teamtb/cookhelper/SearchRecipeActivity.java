@@ -46,6 +46,7 @@ public class SearchRecipeActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(SearchRecipeActivity.this, RecipeActivity.class);
                 intent.putExtra("recipe_id", (Integer) parent.getItemAtPosition(position));
+                intent.putExtra("favorites", true);
                 startActivity(intent);
                 //Toast.makeText((Context) SearchRecipeActivity.this, String.valueOf(parent.getItemAtPosition(position)), Toast.LENGTH_SHORT).show();
             }

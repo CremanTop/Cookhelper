@@ -11,20 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
-import com.google.gson.Gson;
 import com.teamtb.cookhelper.R;
+import com.teamtb.cookhelper.back.Serializer;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
@@ -132,40 +125,10 @@ public class IngredientsAdapter extends ArrayAdapter<String> {
     }
 
     public void serializeData() {
-        String data = new Gson().toJson(getListIngredients());
-
-        try {
-            FileOutputStream file = this.getContext().openFileOutput("ingredient_data.json", Context.MODE_PRIVATE);
-            file.write(data.getBytes());
-            file.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            Toast.makeText(this.getContext(), "File not found", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+        Serializer.serializeData(this.getContext(), "ingredient_data.json", getListIngredients());
     }
 
     public ArrayList<String> deserializeData() {
-        try {
-            FileInputStream fileInput = this.getContext().openFileInput("ingredient_data.json");
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInput));
-
-            StringBuilder stringBuilder = new StringBuilder();
-            String lines;
-            while ((lines = bufferedReader.readLine()) != null) {
-                stringBuilder.append(lines).append("\n");
-            }
-
-            return new Gson().fromJson(stringBuilder.toString(), ArrayList.class);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            Toast.makeText(this.getContext(), "File not found", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
+        return Serializer.deserializeData(this.getContext(), "ingredient_data.json");
     }
 }

@@ -35,4 +35,16 @@ public abstract class RecipeSearcher {
         // список рецептов отсортированный по убыванию совпадения
         return recipes;
     }
+
+    public static ArrayList<Recipe> getRecipesFromIds(ArrayList<Integer> ids) {
+        ArrayList<Recipe> all_recipes = RecipesBook.getRecipes();
+        ArrayList<Recipe> recipes = new ArrayList<>();
+
+        for (Recipe recipe : all_recipes) {
+            if (ids.contains(recipe.getId())) {
+                recipes.add(recipe);
+            }
+        }
+        return recipes;
+    }
 }

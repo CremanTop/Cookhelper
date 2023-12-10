@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.teamtb.cookhelper.R;
 import com.teamtb.cookhelper.SearchRecipeActivity;
 import com.teamtb.cookhelper.databinding.FragmentHomeBinding;
+import com.teamtb.cookhelper.locale.LocaleHelper;
 import com.teamtb.cookhelper.ui.adapters.IngredientsAdapter;
 
 public class HomeFragment extends Fragment {
@@ -71,6 +72,9 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(v.getContext(), SearchRecipeActivity.class);
                 intent.putStringArrayListExtra("list_ingredients", adapter.getListIngredients());
                 startActivity(intent);
+
+                //LocaleHelper.setLocale(v.getContext(), "en");
+                //binding.getRoot().getRootView().setContentView(root);
             }
         });
 
