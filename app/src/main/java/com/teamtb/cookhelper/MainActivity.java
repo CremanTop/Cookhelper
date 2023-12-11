@@ -1,8 +1,7 @@
 package com.teamtb.cookhelper;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -19,8 +18,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        //LocaleHelper.onCreate(this, "en");
-
 
 //        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 //        int theme = prefs.getInt("theme", R.style.Theme_CookHelper);
@@ -28,17 +25,29 @@ public class MainActivity extends AppCompatActivity {
 //        // Устанавливаем выбранную тему
 //        setTheme(theme);
 
-
-        //LocaleHelper.setLocale(this,"en");
         setContentView(binding.getRoot());
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-
-//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-//        String language = "";//preferences.getString("language", "en-rUS");
-//        LocaleHelper.setLocale(this, language);
-        //setContentView(binding.getRoot());
+        // устанавливаем стандартный язык
+        String lan = LocaleHelper.getLanguage(this);
+        TextView control_text = findViewById(R.id.text_recipe);
+        if (control_text != null) {
+            switch (lan) {
+                case "en":
+                    if (!control_text.getText().toString().equals("Choose a recipe")) {
+                        LocaleHelper.onCreate(this, lan);
+                        recreate();
+                    }
+                    break;
+                case "ru":
+                    if (!control_text.getText().toString().equals("Подобрать рецепт")) {
+                        LocaleHelper.onCreate(this, lan);
+                        recreate();
+                    }
+                    break;
+            }
+        }
 
 //        BottomNavigationView navView = findViewById(R.id.nav_view);
 //        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(

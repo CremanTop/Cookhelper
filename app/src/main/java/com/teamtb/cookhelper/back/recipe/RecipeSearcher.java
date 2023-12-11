@@ -7,12 +7,11 @@ import java.util.stream.Collectors;
 
 public abstract class RecipeSearcher {
     public static ArrayList<Recipe> getRelevantRecipes(ArrayList<String> ingredients) {
-        ArrayList<Recipe> all_recipes = RecipesBook.getRecipes();
         ArrayList<Recipe> recipes = new ArrayList<>();
 
         HashMap<Recipe, Float> recipeMap = new HashMap<>();
 
-        for (Recipe recipe : all_recipes) {
+        for (Recipe recipe : RecipesBook.getRecipes()) {
             float matches = 0; // сколько ингридиентов из нужных в рецепте есть у пользователя
             for (Ingredient recipe_ingredient : recipe.getIngredients()) {
                 for (String ingredient : ingredients) {
@@ -37,10 +36,9 @@ public abstract class RecipeSearcher {
     }
 
     public static ArrayList<Recipe> getRecipesFromIds(ArrayList<Integer> ids) {
-        ArrayList<Recipe> all_recipes = RecipesBook.getRecipes();
         ArrayList<Recipe> recipes = new ArrayList<>();
 
-        for (Recipe recipe : all_recipes) {
+        for (Recipe recipe : RecipesBook.getRecipes()) {
             if (ids.contains(recipe.getId())) {
                 recipes.add(recipe);
             }

@@ -1,4 +1,4 @@
-package com.teamtb.cookhelper.ui.notifications;
+package com.teamtb.cookhelper.ui.favorites;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,18 +15,18 @@ import com.teamtb.cookhelper.RecipeActivity;
 import com.teamtb.cookhelper.back.Serializer;
 import com.teamtb.cookhelper.back.recipe.Recipe;
 import com.teamtb.cookhelper.back.recipe.RecipeSearcher;
-import com.teamtb.cookhelper.databinding.FragmentNotificationsBinding;
+import com.teamtb.cookhelper.databinding.FragmentFavoritesBinding;
 import com.teamtb.cookhelper.ui.adapters.SearchRecipeAdapter;
 
 import java.util.ArrayList;
 
-public class NotificationsFragment extends Fragment {
+public class FavoritesFragment extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    private FragmentFavoritesBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentFavoritesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final ListView listView = binding.listFavoritesRecipe;// список рецептов
@@ -42,7 +42,7 @@ public class NotificationsFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(NotificationsFragment.this.getContext(), RecipeActivity.class);
+                Intent intent = new Intent(FavoritesFragment.this.getContext(), RecipeActivity.class);
                 intent.putExtra("recipe_id", (Integer) parent.getItemAtPosition(position));
                 intent.putExtra("favorites", false);
                 startActivity(intent);
