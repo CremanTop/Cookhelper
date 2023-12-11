@@ -17,7 +17,12 @@ public class Ingredient
     @Override
     public String toString()
     {
-        return name.substring(0, 1).toUpperCase() + name.substring(1) + " - " + count;
+        if (name.length() > 0) {
+            return name.substring(0, 1).toUpperCase() + name.substring(1) + (!count.equals("") ? (" - " + count) : "");
+        }
+        else {
+            return (!count.equals("") ? count : "");
+        }
     }
 
     public String getName()

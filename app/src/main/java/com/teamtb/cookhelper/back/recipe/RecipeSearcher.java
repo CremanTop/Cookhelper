@@ -28,7 +28,7 @@ public abstract class RecipeSearcher {
 
         for (Map.Entry<Recipe, Float> entry : recipeMap.entrySet().stream().sorted(Map.Entry.<Recipe, Float>comparingByValue().reversed()).collect(Collectors.toList())) {
             recipes.add(entry.getKey());
-            System.out.println(entry.getKey().getName() + " = " + entry.getValue());
+            //System.out.println(entry.getKey().getName() + " = " + entry.getValue());
         }
 
         // список рецептов отсортированный по убыванию совпадения

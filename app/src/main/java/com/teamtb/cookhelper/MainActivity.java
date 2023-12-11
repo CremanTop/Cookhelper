@@ -10,8 +10,16 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import com.teamtb.cookhelper.back.recipe.Recipe;
+import com.teamtb.cookhelper.back.recipe.RecipesBook;
 import com.teamtb.cookhelper.databinding.ActivityMainBinding;
 import com.teamtb.cookhelper.locale.LocaleHelper;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,10 +62,35 @@ public class MainActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
+        initRecipeBook();
+
 //        BottomNavigationView navView = findViewById(R.id.nav_view);
 //        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
 //                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
 //                .build();
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+    }
+
+    private void initRecipeBook() {
+        RecipesBook book = RecipesBook.getInstance();
+        ArrayList<Recipe> list = new ArrayList<>();
+
+        for (int i = 0; i <= 400; i++) {
+            StringBuilder result = new StringBuilder().append("");
+            try {
+                InputStream inputStream = getAssets().open("recipes/"+i+".json");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+                reader.close();
+                inputStream.close();
+                list.add(RecipesBook.parseRecipe(result.toString()));
+            } catch (IOException e) {
+                //e.printStackTrace();
+            }
+        }
+        book.initRecipes(list);
     }
 }
