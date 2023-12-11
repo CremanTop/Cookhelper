@@ -3,14 +3,16 @@
     <style name="Theme.CookHelper" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/yellow_button</item>
-        <item name="colorPrimaryVariant">@color/orange_button</item>
+        <item name="colorPrimaryVariant">@color/violet_button</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/cyan_button</item>
         <item name="colorSecondaryVariant">@color/green_button</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/orange_button</item>
         <!-- Customize your theme here. -->
+        <item name="colorOnBackground">@color/gray_dark</item>
+        <item name="title">@color/white</item>
     </style>
 </resources>

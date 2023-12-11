@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".RecipeActivity"
-    tools:showIn="@layout/activity_recipe">
+    tools:showIn="@layout/activity_recipe"
+    android:background="?attr/colorOnBackground">
 
     <TextView
         android:id="@+id/text_recipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="?attr/title"
         android:layout_marginStart="200dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="200dp"

@@ -1,9 +1,11 @@
 package com.teamtb.cookhelper;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -18,12 +20,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-
-//        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-//        int theme = prefs.getInt("theme", R.style.Theme_CookHelper);
-//
-//        // Устанавливаем выбранную тему
-//        setTheme(theme);
 
         setContentView(binding.getRoot());
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
@@ -47,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
             }
+        }
+
+        SharedPreferences sharedPreferences = getSharedPreferences("night", 0);
+        Boolean isNightMode = sharedPreferences.getBoolean("night_mode", true);
+        if (isNightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
 //        BottomNavigationView navView = findViewById(R.id.nav_view);

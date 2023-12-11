@@ -55,6 +55,7 @@
             android:gravity="start"
             android:maxLines="8"
             android:text="TextView gf gh gfh"
+            android:textColor="@color/white"
             android:textSize="12sp" />
 
         <TextView
@@ -70,6 +71,7 @@
             android:ellipsize="end"
             android:maxLines="6"
             android:text="TextView gbg b f fbf b fb fb fb fb fb fbfb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb gh g g gh gh gh gh gh gh gh gh ghg h gh gh gh gh gh gh g hg gh g h gh g hg h g h gh gh gh g hg hg hgh gh gh gh gh gh gh"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

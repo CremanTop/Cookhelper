@@ -1,16 +1,19 @@
 package com.teamtb.cookhelper.ui.settings;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.teamtb.cookhelper.R;
@@ -51,8 +54,25 @@ public class SettingsFragment extends Fragment {
                 }
             }
         });
-
-        switchTheme.setChecked(true);
+        SharedPreferences sharedPreference = requireActivity().getSharedPreferences("night", 0);
+        Boolean isNightMode = sharedPreference.getBoolean("night_mode", true);
+        switchTheme.setChecked(isNightMode);
+        switchTheme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    SharedPreferences.Editor editor = sharedPreference.edit();
+                    editor.putBoolean("night_mode", true);
+                    editor.apply();
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    SharedPreferences.Editor editor = sharedPreference.edit();
+                    editor.putBoolean("night_mode", false);
+                    editor.apply();
+                }
+            }
+        });
 
         return root;
     }

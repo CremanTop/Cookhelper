@@ -10,8 +10,10 @@
         <item name="colorSecondaryVariant">@color/green_button</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/orange_button</item>
         <!-- Customize your theme here. -->
+        <item name="colorOnBackground">#C8C0AC</item>
+        <item name="title">@color/black</item>
     </style>
 
     <style name="Theme.CookHelper.NoActionBar">
