@@ -11,7 +11,7 @@ public class RecipesBook { // синглтон
 
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public ArrayList<Recipe> RECIPES;
+    public ArrayList<Recipe> RECIPES = new ArrayList<>();
 
     private RecipesBook() {
     }

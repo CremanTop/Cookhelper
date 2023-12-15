@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -20,6 +20,8 @@ import com.teamtb.cookhelper.R;
 import com.teamtb.cookhelper.databinding.FragmentSettingsBinding;
 import com.teamtb.cookhelper.locale.LocaleHelper;
 
+import java.util.Objects;
+
 public class SettingsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -30,7 +32,6 @@ public class SettingsFragment extends Fragment {
         @SuppressLint("UseSwitchCompatOrMaterialCode")
         Switch switchTheme = binding.switchTheme;
         Spinner spinnerLanguage = binding.spinnerLanguage;
-        Button buttonAccept = binding.buttonLanguageAccept;
 
         final String[] values = {"Русский", "English (US)"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this.requireContext(), R.layout.language, values);
@@ -38,22 +39,42 @@ public class SettingsFragment extends Fragment {
 
         spinnerLanguage.setAdapter(adapter);
 
-        buttonAccept.setOnClickListener(new View.OnClickListener() {
+        String lan = LocaleHelper.getLanguage(this.requireContext());
+        switch (lan) {
+            case "en":
+                spinnerLanguage.setSelection(1);
+                break;
+            case "ru":
+                spinnerLanguage.setSelection(0);
+                break;
+        }
+
+        spinnerLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = (String) spinnerLanguage.getSelectedItem();
                 switch (selectedItem) {
                     case "Русский":
-                        LocaleHelper.setLocale(SettingsFragment.this.getContext(), "ru");
-                        SettingsFragment.this.getActivity().recreate();
+                        if (!Objects.equals(LocaleHelper.getLanguage(SettingsFragment.this.getContext()), "ru")) {
+                            LocaleHelper.setLocale(SettingsFragment.this.getContext(), "ru");
+                            SettingsFragment.this.getActivity().recreate();
+                        }
                         break;
                     case "English (US)":
-                        LocaleHelper.setLocale(SettingsFragment.this.getContext(), "en");
-                        SettingsFragment.this.getActivity().recreate();
+                        if (!Objects.equals(LocaleHelper.getLanguage(SettingsFragment.this.getContext()), "en")) {
+                            LocaleHelper.setLocale(SettingsFragment.this.getContext(), "en");
+                            SettingsFragment.this.getActivity().recreate();
+                        }
                         break;
                 }
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
+
         SharedPreferences sharedPreference = requireActivity().getSharedPreferences("night", 0);
         Boolean isNightMode = sharedPreference.getBoolean("night_mode", true);
         switchTheme.setChecked(isNightMode);

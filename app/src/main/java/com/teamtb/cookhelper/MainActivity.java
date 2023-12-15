@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         SharedPreferences sharedPreferences = getSharedPreferences("night", 0);
-        Boolean isNightMode = sharedPreferences.getBoolean("night_mode", true);
+        boolean isNightMode = sharedPreferences.getBoolean("night_mode", true);
         if (isNightMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
-        initRecipeBook();
+        if (RecipesBook.getRecipes().size() == 0) initRecipeBook();
 
 //        BottomNavigationView navView = findViewById(R.id.nav_view);
 //        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
