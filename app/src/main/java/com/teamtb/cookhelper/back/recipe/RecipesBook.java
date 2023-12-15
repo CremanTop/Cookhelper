@@ -5,13 +5,14 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RecipesBook { // синглтон
     private static RecipesBook INSTANCE;
 
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public ArrayList<Recipe> RECIPES = new ArrayList<>();
+    public HashMap<Integer, Recipe> RECIPES = new HashMap<>();
 
     private RecipesBook() {
     }
@@ -34,17 +35,17 @@ public class RecipesBook { // синглтон
     }
 
     public static ArrayList<Recipe> getRecipes() {
-        return getInstance().RECIPES;
+        return new ArrayList<>(getInstance().RECIPES.values());
     }
 
     public void initRecipes(ArrayList<Recipe> recipes) {
-        RECIPES = recipes;
+        for (Recipe recipe : recipes) {
+            RECIPES.put(recipe.getId(), recipe);
+        }
     }
 
     public static Recipe getRecipeFromId(int id) {
-        for (Recipe recipe : getInstance().RECIPES) {
-            if (recipe.getId() == id) return recipe;
-        }
-        return getInstance().RECIPES.get(0);
+        Recipe recipe = getInstance().RECIPES.get(id);
+        return (recipe != null) ? recipe : getInstance().RECIPES.get(0);
     }
 }

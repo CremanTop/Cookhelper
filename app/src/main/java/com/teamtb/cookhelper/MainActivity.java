@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
-        if (RecipesBook.getRecipes().size() == 0) initRecipeBook();
+        if (RecipesBook.getInstance().RECIPES.size() == 0) initRecipeBook();
 
 //        BottomNavigationView navView = findViewById(R.id.nav_view);
 //        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(

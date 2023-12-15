@@ -38,8 +38,9 @@ public abstract class RecipeSearcher {
     public static ArrayList<Recipe> getRecipesFromIds(ArrayList<Integer> ids) {
         ArrayList<Recipe> recipes = new ArrayList<>();
 
-        for (Recipe recipe : RecipesBook.getRecipes()) {
-            if (ids.contains(recipe.getId())) {
+        for (int id : ids) {
+            Recipe recipe = RecipesBook.getRecipeFromId(id);
+            if (recipe.getId() != 0) {
                 recipes.add(recipe);
             }
         }
